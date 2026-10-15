@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f7b84b">
+<title>متجر الكسور العشرية | متجر الباقي</title>
+<style>
+:root{--ink:#26344a;--cream:#fffaf0;--orange:#ffb84d;--coral:#ff7d72;--teal:#56c7b5;--blue:#7cb8f5;--purple:#a99af8;--line:#f0dfc2}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#fff7e8,#f1f8ff);font-family:Tahoma,Arial,sans-serif;color:var(--ink);min-height:100vh}
+button,input{font:inherit}button{cursor:pointer;border:0}
+.page{max-width:980px;margin:auto;padding:18px}
+.topline{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.pill{background:#fff;border:2px solid var(--line);border-radius:999px;padding:9px 14px;font-weight:bold;font-size:14px}
+.hero{text-align:center;padding:12px 10px 18px}
+.emoji{font-size:54px;filter:drop-shadow(0 5px 0 #f6e1bd)}
+h1{font-size:clamp(27px,5vw,43px);margin:4px 0;color:#99582b}
+.subtitle{margin:8px 0 0;color:#66758b;font-size:16px;line-height:1.8}
+.card{background:#fff;border:3px solid #f6e7cf;border-radius:26px;padding:clamp(16px,3vw,28px);box-shadow:0 9px 0 #f0dfc2;margin:12px 0}
+.start{text-align:center}
+label{display:block;font-weight:bold;margin:12px 0 7px}
+input{width:min(100%,430px);padding:13px 15px;border:2px solid #dce8f4;border-radius:14px;background:#fbfdff;outline:none}
+input:focus{border-color:var(--blue)}
+.primary{background:var(--coral);color:white;padding:13px 24px;border-radius:15px;font-weight:bold;box-shadow:0 5px 0 #e45d57;margin-top:14px}
+.primary:active,.choice:active{transform:translateY(2px);box-shadow:none}
+.progressline{display:flex;justify-content:space-between;gap:12px;font-weight:bold;color:#64748b;margin-bottom:10px}
+.track{height:12px;border-radius:99px;background:#edf1f6;overflow:hidden;margin-bottom:22px}
+.fill{height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--blue));transition:width .3s}
+.question-tag{display:inline-block;background:#fff0d5;color:#9c6420;border-radius:999px;padding:7px 13px;font-weight:bold;margin-bottom:12px}
+.question{font-size:clamp(22px,4vw,32px);line-height:1.7;text-align:center;margin:8px 0 18px}
+.math{font-weight:900;color:#6c55b8;white-space:nowrap;direction:rtl;display:inline-block;background:#f3efff;border-radius:14px;padding:7px 14px;letter-spacing:1px}
+.choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.choice{background:#f8fbff;border:2px solid #dce8f4;border-radius:16px;padding:15px 10px;font-size:20px;font-weight:bold;color:var(--ink);box-shadow:0 4px 0 #e0eaf4;min-height:60px}
+.choice:hover{border-color:var(--blue);background:#eff7ff}
+.choice:disabled{cursor:default;opacity:.9}
+.choice.correct{background:#e6fbf3;border-color:#56c7a3;color:#18795e;box-shadow:0 4px 0 #c0eadb}
+.choice.wrong{background:#fff0ee;border-color:#ff8f86;color:#b9433a;box-shadow:0 4px 0 #f8d3ce}
+.feedback{margin:17px 0 0;border-radius:16px;padding:13px 15px;line-height:1.8;display:none}
+.feedback.show{display:block}.feedback.good{background:#e8fbf4;color:#176b55}.feedback.try{background:#fff5df;color:#895b16}.feedback.bad{background:#fff0ee;color:#a83c35}
+.actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+.secondary{background:#edf4ff;color:#365a8d;border-radius:14px;padding:12px 18px;font-weight:bold}
+.small{font-size:13px;color:#748197;line-height:1.8}
+.hidden{display:none!important}
+.receipt{text-align:center;border:3px dashed #e8bd66;background:linear-gradient(135deg,#fffdf5,#f5fbff)}
+.stars{font-size:34px;letter-spacing:5px}
+.score{font-size:clamp(38px,7vw,58px);font-weight:900;color:#2e9d84;margin:6px}
+.certificate{max-width:700px;margin:16px auto;padding:22px;border:4px double #e6b65a;border-radius:20px;background:#fffdf7}
+.certificate h2{color:#99582b;font-size:clamp(24px,4vw,34px);margin:8px}
+.studentname{font-size:25px;font-weight:bold;color:#6c55b8;border-bottom:2px solid #e8d8b4;display:inline-block;min-width:180px;padding:8px}
+footer{text-align:center;color:#7d8a9d;font-size:12px;padding:18px 5px}
+@media(max-width:560px){.page{padding:12px}.choices{grid-template-columns:1fr}.choice{min-height:54px}.topline{justify-content:center}.card{border-radius:20px}}
+@media print{body{background:white}.topline,.hero,.start,.game,.actions,footer,.no-print{display:none!important}.page{max-width:100%;padding:0}.receipt{display:block!important;border:0;box-shadow:none}.certificate{margin:0 auto;border:5px double #c79b42;min-height:80vh;display:flex;flex-direction:column;justify-content:center}}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="topline">
+    <span class="pill">🛒 الصف السادس الابتدائي</span>
+    <span class="pill">🔢 مهارة: طرح الكسور العشرية</span>
+  </div>
+  <header class="hero">
+    <div class="emoji">🛍️</div>
+    <h1>متجر الكسور العشرية</h1>
+    <p class="subtitle">مرحبًا بكِ في <b>متجر الباقي</b>! أجيبي عن ٥ تحديات في طرح الكسور العشرية واجمعي نقاطكِ.</p>
+  </header>
+
+  <section class="card start" id="startScreen">
+    <div class="emoji" style="font-size:40px">🧺</div>
+    <h2>جاهزة لبدء التسوق؟</h2>
+    <p>اقرئي كل مسألة، واختاري الإجابة الصحيحة. إذا أخطأتِ، سيظهر لكِ تلميح وفرصة ثانية.</p>
+    <label for="studentName">اسم الطالبة</label>
+    <input id="studentName" maxlength="40" placeholder="اكتبي اسمك هنا" autocomplete="name">
+    <div><button class="primary" id="startBtn">ابدئي التحدي 🚀</button></div>
+    <p class="small">٥ أسئلة فقط • محاولة أولى ومحاولة ثانية بعد التلميح • شهادة إنجاز في النهاية</p>
+  </section>
+
+  <section class="card game hidden" id="gameScreen">
+    <div class="progressline"><span id="questionCount">السؤال ١ من ٥</span><span>⭐ النقاط: <b id="points">٠</b></span></div>
+    <div class="track"><div class="fill" id="progress"></div></div>
+    <div style="text-align:center"><span class="question-tag" id="category">تحدي المتجر</span></div>
+    <div class="question" id="questionText"></div>
+    <div class="choices" id="choices"></div>
+    <div class="feedback" id="feedback" role="status" aria-live="polite"></div>
+    <div class="actions">
+      <button class="primary hidden" id="nextBtn">السؤال التالي ←</button>
+    </div>
+  </section>
+
+  <section class="card receipt hidden" id="resultScreen">
+    <div class="stars" id="resultStars">🌟 🛍️ 🌟</div>
+    <h2>أحسنتِ يا بطلة المتجر!</h2>
+    <p id="resultMessage">أنهيتِ جميع التحديات.</p>
+    <div class="score" id="finalScore">٠٪</div>
+    <p>نتيجتكِ في طرح الكسور العشرية</p>
+    <div class="certificate">
+      <div style="font-size:42px">🏆</div>
+      <h2>شهادة إنجاز</h2>
+      <p>تُمنح للطالبة</p>
+      <div class="studentname" id="certificateName">الطالبة</div>
+      <p>لإتمامها تحديات <b>متجر الكسور العشرية</b> في مهارة طرح الكسور العشرية.</p>
+      <div style="font-size:22px;font-weight:bold;color:#2e9d84" id="certificateScore">النتيجة: ٠٪</div>
+      <p class="small">استمري في التعلّم، فكل محاولة تقرّبكِ من الإتقان ✨</p>
+      <p class="small">إعداد المعلمة: مريم المبرزي</p>
+      <p class="small">جميع الحقوق محفوظة © مريم المبرزي</p>
+    </div>
+    <div class="actions no-print">
+      <button class="primary" id="printBtn">🖨️ طباعة الشهادة</button>
+      <button class="secondary" id="restartBtn">إعادة اللعب ↻</button>
+    </div>
+    <p class="small no-print">للطباعة: اختاري «طباعة الشهادة» ثم احفظيها بصيغة PDF إذا رغبتِ.</p>
+  </section>
+  <footer>متجر الكسور العشرية • تعلّم ممتع خطوة بخطوة 💛</footer>
+</div>
+<script>
+const questions = [
+ {q:"اشترت نورة شريطًا طوله ٨٫٥ متر، واستخدمت منه ٣٫٢ متر. كم مترًا بقي؟",a:"٥٫٣",opts:["٥٫٣","٤٫٧","٥٫٧","٦٫٣"],hint:"رتّبي الفواصل العشرية تحت بعضها، ثم اطرحي: ٨٫٥ − ٣٫٢.",explain:"٨٫٥ − ٣٫٢ = ٥٫٣ متر."},
+ {q:"كان في زجاجة ٦٫٤ لتر من العصير، شُرب منها ٢٫٧ لتر. كم لترًا بقي؟",a:"٣٫٧",opts:["٤٫٣","٣٫٧","٣٫٣","٤٫٧"],hint:"اكتبي ٦٫٤ على صورة ٦٫٤٠، ثم اطرحي ٢٫٧٠.",explain:"٦٫٤٠ − ٢٫٧٠ = ٣٫٧٠، أي ٣٫٧ لتر."},
+ {q:"مع سارة ١٢٫٠٥ ريالًا، اشترت قلمًا بـ ٤٫٨ ريال. كم بقي معها؟",a:"٧٫٢٥",opts:["٧٫٢٥","٨٫٢٥","٧٫٧٥","٦٫٢٥"],hint:"أضيفي صفرًا: ٤٫٨ = ٤٫٨٠، ثم اطرحي ١٢٫٠٥ − ٤٫٨٠.",explain:"١٢٫٠٥ − ٤٫٨٠ = ٧٫٢٥ ريالات."},
+ {q:"طول لوح ٩٫٠٣ متر، قُصّ منه ٢٫٦٨ متر. ما طول الجزء المتبقي؟",a:"٦٫٣٥",opts:["٦٫٤٥","٦٫٣٥","٧٫٣٥","٥٫٣٥"],hint:"اكتبي ٩٫٠٣ − ٢٫٦٨، وانتبهِي إلى إعادة التجميع عند الأجزاء من مئة.",explain:"٩٫٠٣ − ٢٫٦٨ = ٦٫٣٥ متر."},
+ {q:"اشترى متجر ٢٠ كجم من الأرز، وباع ٧٫٨٥ كجم صباحًا و٤٫٦ كجم مساءً. كم كيلوجرامًا بقي؟",a:"٧٫٥٥",opts:["٨٫٥٥","٧٫٤٥","٧٫٥٥","٦٫٥٥"],hint:"اجمعي المباع أولًا: ٧٫٨٥ + ٤٫٦٠ = ١٢٫٤٥، ثم اطرحي الناتج من ٢٠٫٠٠.",explain:"٢٠٫٠٠ − ١٢٫٤٥ = ٧٫٥٥ كجم."}
+];
+const digits = s => String(s).replace(/[0-9]/g, d => "٠١٢٣٤٥٦٧٨٩"[d]);
+let order=[], idx=0, score=0, attempts=0, locked=false, name="الطالبة", awarded=[];
+const $=id=>document.getElementById(id);
+function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
+function start(){name=$("studentName").value.trim()||"الطالبة";order=shuffle(questions.map((_,i)=>i));idx=0;score=0;awarded=[];$("startScreen").classList.add("hidden");$("resultScreen").classList.add("hidden");$("gameScreen").classList.remove("hidden");renderQuestion()}
+function renderQuestion(){
+ locked=false;attempts=0;
+ const q=questions[order[idx]];
+ $("questionCount").textContent=`السؤال ${digits(idx+1)} من ${digits(questions.length)}`;
+ $("points").textContent=digits(score);
+ $("progress").style.width=`${idx/questions.length*100}%`;
+ $("questionText").innerHTML=q.q.replace(/([٠-٩]+(?:٫[٠-٩]+)?)/g,'<span class="math">$1</span>');
+ $("choices").innerHTML="";$("feedback").className="feedback";$("feedback").textContent="";$("nextBtn").classList.add("hidden");
+ shuffle(q.opts).forEach(opt=>{
+   const b=document.createElement("button");b.className="choice";b.textContent=opt;b.onclick=()=>choose(b,opt,q);$("choices").appendChild(b);
+ });
+}
+function choose(btn,opt,q){
+ if(locked)return;
+ attempts++;
+ const buttons=[...$("choices").querySelectorAll("button")];
+ if(opt===q.a){
+   locked=true;buttons.forEach(b=>b.disabled=true);btn.classList.add("correct");
+   const earned=attempts===1?20:15;score+=earned;awarded.push(earned);
+   $("points").textContent=digits(score);
+   showFeedback("good",`إجابة صحيحة! 🎉 ${attempts===1?"حصلتِ على ٢٠ نقطة كاملة.":"أحسنتِ! حصلتِ على ١٥ نقطة بعد التلميح."}<br>${q.explain}`);
+   $("nextBtn").textContent=idx===questions.length-1?"عرض الشهادة 🏆":"السؤال التالي ←";$("nextBtn").classList.remove("hidden");
+ }else{
+   btn.classList.add("wrong");btn.disabled=true;
+   if(attempts===1){
+     showFeedback("try",`قريبة! لا بأس، جرّبي مرة أخرى. 💡<br><b>تلميح:</b> ${q.hint}`);
+   }else{
+     locked=true;buttons.forEach(b=>b.disabled=true);
+     const correct=buttons.find(b=>b.textContent===q.a);if(correct)correct.classList.add("correct");
+     showFeedback("bad",`انتهت المحاولتان. الإجابة الصحيحة هي <b>${q.a}</b>.<br>${q.explain}`);
+     awarded.push(0);$("nextBtn").textContent=idx===questions.length-1?"عرض الشهادة 🏆":"السؤال التالي ←";$("nextBtn").classList.remove("hidden");
+   }
+ }
+}
+function showFeedback(kind,html){$("feedback").className=`feedback show ${kind}`;$("feedback").innerHTML=html}
+function next(){idx++;if(idx<questions.length)renderQuestion();else finish()}
+function finish(){
+ $("gameScreen").classList.add("hidden");$("resultScreen").classList.remove("hidden");$("progress").style.width="100%";
+ const pct=Math.round(score/(questions.length*20)*100);
+ $("finalScore").textContent=digits(pct)+"٪";$("certificateScore").textContent="النتيجة: "+digits(pct)+"٪";$("certificateName").textContent=name;
+ $("resultMessage").textContent=pct===100?"رائع! أتقنتِ جميع تحديات المتجر!":pct>=60?"أداء جميل! واصلي التدريب لتصبحي أكثر إتقانًا.":"شكرًا لمحاولتكِ! أعيدي اللعب وتدرّبي على الطرح.";
+ $("resultStars").textContent=pct===100?"🌟 🏆 🌟":pct>=60?"⭐ 🛍️ ⭐":"💛 🧺 💛";
+}
+$("startBtn").onclick=start;$("nextBtn").onclick=next;$("printBtn").onclick=()=>window.print();$("restartBtn").onclick=()=>{$("resultScreen").classList.add("hidden");$("startScreen").classList.remove("hidden");$("studentName").value=name};
+</script>
+</body>
+</html>
